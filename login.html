@@ -10,11 +10,25 @@
     <h1>SCP FOUNDATION</h1>
     <h2>Sector Twelve Secure Access</h2>
 
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
 
-    <button onclick="location.href='base.html'">LOGIN</button>
+    <button onclick="login()">LOGIN</button>
+
+    <p id="error" style="color:red;"></p>
 </div>
+
+<script>
+function login() {
+    const password = document.getElementById("password").value;
+
+    if (password === "S-12D") {
+        window.location.href = "base.html";
+    } else {
+        document.getElementById("error").innerText = "ACCESS DENIED";
+    }
+}
+</script>
 
 </body>
 </html>
