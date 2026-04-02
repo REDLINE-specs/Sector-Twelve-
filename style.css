@@ -1,16 +1,19 @@
-body {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     background-color: #0b0f14;
     color: #d0d6db;
     font-family: "Courier New", monospace;
-    margin: 0;
 }
 
 .container {
     width: 100%;
     max-width: 1200px;
-    min-height: 100vh;
+    min-height: 100%;
     margin: auto;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 h1, h2 {
@@ -24,6 +27,7 @@ input {
     background: #11161c;
     border: 1px solid #333;
     color: white;
+    box-sizing: border-box;
 }
 
 button {
@@ -45,6 +49,7 @@ button:hover {
     padding: 15px;
     border-left: 3px solid #3a6ea5;
     margin-top: 15px;
+    box-sizing: border-box;
 }
 
 .nav-btn {
