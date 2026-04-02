@@ -14,14 +14,12 @@
     <input type="password" id="password" placeholder="Password">
 
     <button onclick="login()">LOGIN</button>
-
     <p id="error" style="color:red;"></p>
 </div>
 
 <script>
 function login() {
     const password = document.getElementById("password").value;
-
     if (password === "S-12D") {
         window.location.href = "base.html";
     } else {
