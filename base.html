@@ -1,27 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sector Twelve Database</title>
-    <link rel="stylesheet" href="./style.css">
+  <title>SECTOR TWELVE DATABASE</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .terminal {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      overflow-y: auto;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Sector Twelve Database</h1>
+<div class="terminal">
+  <h2>SECTOR TWELVE — REPORT DATABASE</h2>
 
-    <div class="block">
-        <h2>Available Reports</h2>
-        <p><b>ST12-ICD/ABT-096</b> — Abotilla Incident</p>
-        <button onclick="location.href='./report.html'">Open Report</button>
-    </div>
+  <!-- CURRENT REPORT -->
+  <p>
+    <a class="btn" href="profiles-operator01.html">
+      FILE: ST12-ICD/ABT-096 
+      <span class="status-active">[CLASSIFIED]</span>
+    </a>
+  </p>
 
-    <button class="nav-btn" onclick="location.href='./login.html'">
-        Return to Login
-    </button>
+  <!-- Placeholder for future expansion -->
+  <p>
+    <a class="btn" href="#">
+      FILE: [REDACTED] 
+      <span class="status-kia">[LOCKED]</span>
+    </a>
+  </p>
 
-    <div class="footer">
-        Reports authored by Sector Twelve Overseer
-    </div>
+  <p class="warning">
+    INFORMATION CONTROL DIVISION ACTIVE<br>
+    UNIT: SECTOR TWELVE
+  </p>
+
+  <div class="footer">
+    Reports authored by Sector Twelve Overseer
+  </div>
+
+  <br>
+
+  <!-- Navigation -->
+  <button class="btn" onclick="location.href='index.html'">
+    RETURN TO LOGIN
+  </button>
+
 </div>
 
 </body>
