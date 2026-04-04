@@ -1,35 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SCP Login</title>
+  <title>SCP FOUNDATION TERMINAL</title>
+  <link rel="stylesheet" href="style.css">
 
-    <!-- FORCE CSS LOAD -->
-    <link rel="stylesheet" href="./style.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .terminal {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>SCP FOUNDATION</h1>
-    <h2>Sector Twelve Secure Access</h2>
+<div class="terminal">
+  <h1 id="terminal-title">SCP FOUNDATION</h1>
+  <p id="terminal-text">INITIALIZING SECURE ACCESS...</p>
 
-    <input type="text" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
+  <input type="text" id="callsign" placeholder="PERSONNEL ID">
+  <input type="password" id="accesskey" placeholder="ACCESS CODE">
 
-    <button onclick="login()">LOGIN</button>
-    <p id="error" style="color:red;"></p>
+  <button type="button" class="btn" onclick="checkAccess()">ENTER</button>
+
+  <p class="warning">
+    UNIT: SECTOR TWELVE<br>
+    CLEARANCE LEVEL REQUIRED<br>
+    UNAUTHORIZED ACCESS WILL BE LOGGED
+  </p>
+</div>
+
+<!-- WARNING OVERLAY -->
+<div id="warning-overlay">
+  <div class="warning-text">
+    ACCESS DENIED<br>
+    INVALID CREDENTIALS<br>
+    SESSION TERMINATED
+  </div>
+  <div class="scanlines"></div>
 </div>
 
 <script>
-function login() {
-    const password = document.getElementById("password").value;
-
-    if (password === "S-12D") {
-        window.location.href = "./base.html";
-    } else {
-        document.getElementById("error").innerText = "ACCESS DENIED";
+function typeText(element, text, speed = 40) {
+  let i = 0;
+  element.innerHTML = '';
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
     }
+  }
+  type();
 }
+
+function checkAccess() {
+  const idInput = document.getElementById('callsign');
+  const keyInput = document.getElementById('accesskey');
+
+  const id = idInput.value.trim().toUpperCase();
+  const key = keyInput.value.trim();
+
+  const terminalText = document.getElementById('terminal-text');
+  const overlay = document.getElementById('warning-overlay');
+
+  // MAIN ACCESS (your system)
+  if (key === "S-12D") {
+    idInput.disabled = true;
+    keyInput.disabled = true;
+    typeText(terminalText, 'CLEARANCE ACCEPTED...\nLOADING SECTOR TWELVE DATABASE');
+    setTimeout(() => {
+      window.location.href = "database.html";
+    }, 1200);
+    return;
+  }
+
+  // WRONG PASSWORD
+  idInput.disabled = true;
+  keyInput.disabled = true;
+  typeText(terminalText, 'ACCESS DENIED...');
+  setTimeout(() => {
+    overlay.style.display = 'flex';
+  }, 500);
+}
+
+typeText(document.getElementById('terminal-text'), "INITIALIZING SECURE ACCESS...");
 </script>
+
+<style>
+.warning-text {
+  color: #ff3333 !important;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: glitch 0.2s infinite;
+  position: relative;
+}
+</style>
 
 </body>
 </html>
