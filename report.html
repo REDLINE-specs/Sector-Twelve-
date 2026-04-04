@@ -1,63 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Abotilla Report</title>
-    <link rel="stylesheet" href="./style.css">
+  <title>ST12-ICD/ABT-096</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>ST12-ICD/ABT-096</h1>
-    <h2>Abotilla Incident</h2>
+<div class="terminal">
+  <h2>FILE: ST12-ICD/ABT-096</h2>
+  <h3>INCIDENT: ABOTILLA EVENT</h3>
 
-    <div class="block">
-        <p>
-        A containment breach involving SCP-096 originated at Site-██ due to unauthorized imaging.
-        The file propagated outside Foundation systems, leading to civilian exposure.
-        </p>
-    </div>
+  <p>Origin Site: Site-██</p>
+  <p>Entity: SCP-096</p>
+  <p>Classification: <span class="status-kia">EUCLID</span></p>
 
-    <div class="block">
-        <h2>Incident</h2>
-        <p>
-        SCP-096 entered Abotilla within minutes, eliminating exposed individuals.
-        Panic and environmental damage caused additional casualties.
-        </p>
-    </div>
+  <p>Summary:</p>
+  <p>
+  A containment breach involving SCP-096 occurred following unauthorized visual exposure during a routine inspection.
+  A partial image of the entity’s face was captured and transmitted beyond Foundation-secured systems.
+  </p>
 
-    <div class="block">
-        <h2>Response</h2>
-        <p>
-        Mobile Task Force Eta-10 ("See No Evil") contained the situation using non-visual methods.
-        </p>
-    </div>
+  <p>Incident Development:</p>
+  <p>
+  The image reached civilian networks and was accessed by multiple individuals located in the village of Abotilla.
+  SCP-096 entered an active state shortly thereafter and began tracking exposed individuals.
+  </p>
 
-    <div class="block">
-        <h2>Survivors</h2>
-        <p>
-        19 individuals survived. All were treated with amnestics and relocated.
-        </p>
-    </div>
+  <p>
+  The entity arrived at Abotilla within approximately eight minutes.
+  Termination of exposed subjects was immediate and absolute.
+  Secondary casualties occurred due to structural collapse and civilian panic.
+  </p>
 
-    <div class="block">
-        <h2>Public Cover</h2>
-        <p>
-        The incident was officially reported as a gas explosion.
-        </p>
-    </div>
+  <p>Response:</p>
+  <p>
+  Mobile Task Force Eta-10 (“See No Evil”) established perimeter containment.
+  No direct visual contact protocols were maintained.
+  Entity activity ceased after completion of its termination cycle.
+  </p>
 
-    <button class="nav-btn" onclick="location.href='./base.html'">
-        Back to Database
-    </button>
+  <p>Survivors:</p>
+  <p>
+  Nineteen (19) individuals survived due to lack of exposure.
+  Survivors displayed acute psychological trauma and fragmented recollection.
+  Class-B amnestics were administered.
+  All individuals were relocated and reassigned identities.
+  </p>
 
-    <button class="nav-btn" onclick="location.href='./login.html'">
-        Return to Login
-    </button>
+  <p>Public Narrative:</p>
+  <p>
+  The incident was publicly reported as a gas pipeline explosion followed by structural fire.
+  The area was declared hazardous and subsequently cleared.
+  </p>
 
-    <div class="footer">
-        Reports authored by Sector Twelve Overseer
-    </div>
+  <p class="warning">
+    INFORMATION CONTROL DIVISION — SECTOR TWELVE<br>
+    LEVEL 4 CLEARANCE REQUIRED
+  </p>
+
+  <a class="btn" href="database.html">RETURN TO DATABASE</a>
+  <a class="btn" href="index.html">RETURN TO LOGIN</a>
+
+  <div class="footer">
+    Reports authored by Sector Twelve Overseer
+  </div>
 </div>
+
+<script>
+const paragraphs = document.querySelectorAll('p');
+paragraphs.forEach(p => {
+  const text = p.innerText;
+  p.innerText = '';
+  let i = 0;
+  function type() {
+    if(i < text.length) {
+      p.innerText += text.charAt(i);
+      i++;
+      setTimeout(type, 10);
+    }
+  }
+  type();
+});
+</script>
 
 </body>
 </html>
