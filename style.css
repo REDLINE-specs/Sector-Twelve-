@@ -17,11 +17,15 @@ html, body {
   max-height: none;
   background-color: #11161c; /* SCP panel tone */
   font-family: monospace;
-  color: #d0d6db !important; /* neutral text */
+  color: #d0d6db !important;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
 }
 
 /* Force consistent SCP styling */
@@ -33,9 +37,48 @@ html, body {
 }
 
 /* Headings */
-.terminal h1, 
+.terminal h1 {
+  color: #ffffff !important;
+  font-size: 2rem;
+  margin: 1em 0 0.5em 0;
+  border-bottom: 1px solid #3a6ea5; /* underline SCP style */
+  padding-bottom: 0.2em;
+}
+
 .terminal h2 {
   color: #ffffff !important;
+  font-size: 1.5rem;
+  margin: 1em 0 0.5em 0;
+  border-left: 4px solid #3a6ea5; /* SCP section style */
+  padding-left: 0.5em;
+}
+
+/* Subheadings */
+.terminal h3 {
+  color: #6fcf97 !important; /* green SCP accent */
+  font-size: 1.2rem;
+  margin: 0.8em 0 0.3em 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Paragraphs */
+.terminal p {
+  margin: 0.5em 0;
+  text-indent: 2em;
+}
+
+/* Code blocks */
+.terminal pre, 
+.terminal code {
+  color: #d0d6db !important;
+  background-color: #0b0f14 !important;
+  font-family: monospace !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0.5em 0;
+  padding-left: 2em;
+  border-left: 2px solid #3a6ea5; /* SCP style code indicator */
 }
 
 /* Inputs */
@@ -65,7 +108,7 @@ html, body {
   color: #ffffff !important;
 }
 
-/* Status colors (more SCP-like) */
+/* Status colors */
 .terminal .status-active { color: #6fcf97 !important; }
 .terminal .status-kia { color: #ff5555 !important; }
 
@@ -74,14 +117,6 @@ html, body {
   margin-top: 20px; 
   font-size: 11px; 
   color: #666 !important; 
-}
-
-/* Code blocks */
-.terminal pre, 
-.terminal code {
-  color: #d0d6db !important;
-  background-color: #0b0f14 !important;
-  font-family: monospace !important;
 }
 
 /* ===== WARNING OVERLAY ===== */
