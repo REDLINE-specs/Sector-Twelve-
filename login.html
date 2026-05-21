@@ -11,6 +11,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      background: #05070a;
     }
 
     .terminal {
@@ -23,9 +24,101 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      font-family: "Courier New", monospace;
+      color: #b7f7c1;
+      background: radial-gradient(circle at center, #0a1118 0%, #05070a 70%);
+    }
+
+    input {
+      width: 280px;
+      padding: 12px;
+      margin: 8px 0;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #7fffb0;
+      color: #d7e0d7;
+      font-family: inherit;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(215,224,215,0.45);
+    }
+
+    .btn {
+      margin-top: 12px;
+      padding: 12px 20px;
+      background: transparent;
+      border: 1px solid #7fffb0;
+      color: #7fffb0;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #7fffb0;
+      color: #05070a;
+    }
+
+    .warning {
+      margin-top: 25px;
+      color: #ff6b6b;
+      text-align: center;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    #warning-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .warning-text {
+      color: #ff3333;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: glitch 0.15s infinite;
+      position: relative;
+      line-height: 1.8;
+    }
+
+    .scanlines {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0px, 0px); }
+      20% { transform: translate(-1px, 1px); }
+      40% { transform: translate(1px, -1px); }
+      60% { transform: translate(-1px, 0px); }
+      80% { transform: translate(1px, 1px); }
+      100% { transform: translate(0px, 0px); }
     }
   </style>
 </head>
+
 <body>
 
 <div class="terminal">
@@ -46,10 +139,8 @@
 
 <!-- WARNING OVERLAY -->
 <div id="warning-overlay">
-  <div class="warning-text">
-    ACCESS DENIED<br>
-    INVALID CREDENTIALS<br>
-    SESSION TERMINATED
+  <div class="warning-text" id="warning-message">
+    ACCESS DENIED
   </div>
   <div class="scanlines"></div>
 </div>
@@ -58,14 +149,25 @@
 function typeText(element, text, speed = 40) {
   let i = 0;
   element.innerHTML = '';
+
   function type() {
     if (i < text.length) {
-      element.innerHTML += text.charAt(i);
+      if (text.charAt(i) === '\n') {
+        element.innerHTML += '<br>';
+      } else {
+        element.innerHTML += text.charAt(i);
+      }
+
       i++;
       setTimeout(type, speed);
     }
   }
+
   type();
+}
+
+function generateFakeIP() {
+  return `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
 }
 
 function checkAccess() {
@@ -77,42 +179,72 @@ function checkAccess() {
 
   const terminalText = document.getElementById('terminal-text');
   const overlay = document.getElementById('warning-overlay');
+  const warningMessage = document.getElementById('warning-message');
 
-  // MAIN ACCESS (your system)
-  if (key === "S-12D") {
+  // VALID ACCESS: AD-X
+  if (id === "AD-X" && key === "ALB-XAD") {
     idInput.disabled = true;
     keyInput.disabled = true;
-    typeText(terminalText, 'CLEARANCE ACCEPTED...\nLOADING SECTOR TWELVE DATABASE');
+
+    typeText(
+      terminalText,
+      "ADMINISTRATIVE CLEARANCE ACCEPTED...\nLOADING FOUNDATION DATABASE"
+    );
+
     setTimeout(() => {
       window.location.href = "base.html";
-    }, 1200);
+    }, 1500);
+
     return;
   }
 
-  // WRONG PASSWORD
+  // VALID ACCESS: ST-X
+  if (id === "ST-X" && key === "ST12-OV") {
+    idInput.disabled = true;
+    keyInput.disabled = true;
+
+    typeText(
+      terminalText,
+      "SECTOR TWELVE OVERSEER VERIFIED...\nACCESSING INTERNAL ARCHIVES"
+    );
+
+    setTimeout(() => {
+      window.location.href = "base.html";
+    }, 1500);
+
+    return;
+  }
+
+  // INVALID ACCESS
   idInput.disabled = true;
   keyInput.disabled = true;
-  typeText(terminalText, 'ACCESS DENIED...');
+
+  typeText(
+    terminalText,
+    "UNAUTHORIZED ACCESS DETECTED..."
+  );
+
+  const fakeIP = generateFakeIP();
+
   setTimeout(() => {
+    warningMessage.innerHTML = `
+      ACCESS DENIED<br>
+      YOU ARE NOT AUTHORIZED TO ENTER<br><br>
+      FOUNDATION PERSONNEL ARE<br>
+      ALREADY HEADING TO YOUR LOCATION<br><br>
+      TRACE ID: ${fakeIP}<br>
+      SESSION TERMINATED
+    `;
+
     overlay.style.display = 'flex';
-  }, 500);
+  }, 1000);
 }
 
-typeText(document.getElementById('terminal-text'), "INITIALIZING SECURE ACCESS...");
+typeText(
+  document.getElementById('terminal-text'),
+  "INITIALIZING SECURE ACCESS..."
+);
 </script>
-
-<style>
-.warning-text {
-  color: #ff3333 !important;
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  animation: glitch 0.2s infinite;
-  position: relative;
-}
-</style>
 
 </body>
 </html>
