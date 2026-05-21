@@ -167,7 +167,15 @@ function typeText(element, text, speed = 40) {
 }
 
 function generateFakeIP() {
-  return `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
+  const fakeIPs = [
+    "155.153.52.33",
+    "54.46.183.61",
+    "104.7.129.77",
+    "202.103.246.174",
+    "72.250.3.213"
+  ];
+
+  return fakeIPs[Math.floor(Math.random() * fakeIPs.length)];
 }
 
 function checkAccess() {
