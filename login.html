@@ -137,11 +137,8 @@
   </p>
 </div>
 
-<!-- WARNING OVERLAY -->
 <div id="warning-overlay">
-  <div class="warning-text" id="warning-message">
-    ACCESS DENIED
-  </div>
+  <div class="warning-text" id="warning-message">ACCESS DENIED</div>
   <div class="scanlines"></div>
 </div>
 
@@ -157,7 +154,6 @@ function typeText(element, text, speed = 40) {
       } else {
         element.innerHTML += text.charAt(i);
       }
-
       i++;
       setTimeout(type, speed);
     }
@@ -168,56 +164,16 @@ function typeText(element, text, speed = 40) {
 
 function generateFakeIP() {
   const fakeIPs = [
-    "131.199.32.202",
-    "77.236.115.28",
-    "98.22.40.175",
-    "22.97.22.4",
-    "85.33.115.61",
-    "230.233.145.143",
-    "62.83.138.231",
-    "172.63.138.84",
-    "126.42.87.30",
-    "2.134.177.158",
-    "212.222.113.92",
-    "188.219.52.42",
-    "149.22.245.89",
-    "5.119.35.228",
-    "137.116.176.45",
-    "102.133.84.65",
-    "244.197.8.48",
-    "72.195.236.127",
-    "99.243.238.31",
-    "29.7.129.251",
-    "22.238.24.188",
-    "35.137.33.72",
-    "242.247.159.172",
-    "57.72.87.60",
-    "72.245.244.4",
-    "210.240.221.120",
-    "200.100.144.126",
-    "127.98.125.11",
-    "252.170.219.115",
-    "133.161.210.17",
-    "108.182.30.72",
-    "167.208.162.123",
-    "108.178.130.32",
-    "24.62.97.50",
-    "131.74.17.111",
-    "246.223.122.248",
-    "82.233.243.193",
-    "74.173.197.46",
-    "25.137.17.193",
-    "115.27.134.89",
-    "11.79.134.100",
-    "50.168.89.60",
-    "75.115.120.200",
-    "170.87.5.157",
-    "191.85.74.192",
-    "38.246.66.33",
-    "176.9.109.108",
-    "90.3.112.158",
-    "51.87.120.245",
-    "225.53.40.16"
+    "131.199.32.202","77.236.115.28","98.22.40.175","22.97.22.4","85.33.115.61",
+    "230.233.145.143","62.83.138.231","172.63.138.84","126.42.87.30","2.134.177.158",
+    "212.222.113.92","188.219.52.42","149.22.245.89","5.119.35.228","137.116.176.45",
+    "102.133.84.65","244.197.8.48","72.195.236.127","99.243.238.31","29.7.129.251",
+    "22.238.24.188","35.137.33.72","242.247.159.172","57.72.87.60","72.245.244.4",
+    "210.240.221.120","200.100.144.126","127.98.125.11","252.170.219.115","133.161.210.17",
+    "108.182.30.72","167.208.162.123","108.178.130.32","24.62.97.50","131.74.17.111",
+    "246.223.122.248","82.233.243.193","74.173.197.46","25.137.17.193","115.27.134.89",
+    "11.79.134.100","50.168.89.60","75.115.120.200","170.87.5.157","191.85.74.192",
+    "38.246.66.33","176.9.109.108","90.3.112.158","51.87.120.245","225.53.40.16"
   ];
 
   return fakeIPs[Math.floor(Math.random() * fakeIPs.length)];
@@ -234,65 +190,47 @@ function checkAccess() {
   const overlay = document.getElementById('warning-overlay');
   const warningMessage = document.getElementById('warning-message');
 
-  // VALID ACCESS: AD-X
+  // AD-X
   if (id === "AD-X" && key === "ALB-XAD") {
     idInput.disabled = true;
     keyInput.disabled = true;
-
-    typeText(
-      terminalText,
-      "ADMINISTRATIVE CLEARANCE ACCEPTED...\nLOADING FOUNDATION DATABASE"
-    );
-
-    setTimeout(() => {
-      window.location.href = "base.html";
-    }, 1500);
-
+    typeText(terminalText, "ADMINISTRATIVE CLEARANCE ACCEPTED...\nLOADING FOUNDATION DATABASE");
+    setTimeout(() => window.location.href = "base.html", 1500);
     return;
   }
 
-  // VALID ACCESS: ST-X
+  // ST-X
   if (id === "ST-X" && key === "ST12-OV") {
     idInput.disabled = true;
     keyInput.disabled = true;
-
-    typeText(
-      terminalText,
-      "SECTOR TWELVE OVERSEER VERIFIED...\nACCESSING INTERNAL ARCHIVES"
-    );
-
-    setTimeout(() => {
-      window.location.href = "base.html";
-    }, 1500);
-
+    typeText(terminalText, "SECTOR TWELVE OVERSEER VERIFIED...\nACCESSING INTERNAL ARCHIVES");
+    setTimeout(() => window.location.href = "base.html", 1500);
     return;
   }
 
-  // VALID ACCESS: DIV-4
+  // DIV-4
   if (id === "DIV-4" && key === "26042026") {
     idInput.disabled = true;
     keyInput.disabled = true;
-
-    typeText(
-      terminalText,
-      "OVERWATCH COMMAND, WELCOME, ALEXANDER"
-    );
-
-    setTimeout(() => {
-      window.location.href = "base.html";
-    }, 1500);
-
+    typeText(terminalText, "OVERWATCH COMMAND, WELCOME, ALEXANDER");
+    setTimeout(() => window.location.href = "base.html", 1500);
     return;
   }
 
-  // INVALID ACCESS
+  // ISD-DEP
+  if (id === "ISD-DEP" && key === "WeCantSaveFoone") {
+    idInput.disabled = true;
+    keyInput.disabled = true;
+    typeText(terminalText, "INTERNAL SECURITY DIVISION LINK ESTABLISHED...\nDEPARTMENT NODE SYNCHRONIZED");
+    setTimeout(() => window.location.href = "base.html", 1500);
+    return;
+  }
+
+  // INVALID
   idInput.disabled = true;
   keyInput.disabled = true;
 
-  typeText(
-    terminalText,
-    "UNAUTHORIZED ACCESS DETECTED..."
-  );
+  typeText(terminalText, "UNAUTHORIZED ACCESS DETECTED...");
 
   const fakeIP = generateFakeIP();
 
@@ -305,15 +243,11 @@ function checkAccess() {
       TRACE ID: ${fakeIP}<br>
       SESSION TERMINATED
     `;
-
     overlay.style.display = 'flex';
   }, 1000);
 }
 
-typeText(
-  document.getElementById('terminal-text'),
-  "INITIALIZING SECURE ACCESS..."
-);
+typeText(document.getElementById('terminal-text'), "INITIALIZING SECURE ACCESS...");
 </script>
 
 </body>
